@@ -9,6 +9,9 @@ import AuthLayout from "../../layouts/AuthLayout";
 import LoginPage from "../../pages/LoginPage";
 import RegisterPage from "../../pages/RegisterPage";
 import NotFoundPage from "../../pages/NotFoundPage";
+import ProtectedRoute from "./routeGaurd/ProtectedRoute";
+import PublicRoute from "./routeGaurd/PublicRoute";
+
 const router = createBrowserRouter([
     {
         path:ROUTES.HOME,
@@ -20,15 +23,19 @@ const router = createBrowserRouter([
             },
             {
                 path:ROUTES.BOARD,
-                element:<BoardPage/>
+                element:(<ProtectedRoute><BoardPage/></ProtectedRoute>)
             },
             {
                 path:ROUTES.ACTIVITY,
-                element:<ActivityPage/>
+                element:(<ProtectedRoute><ActivityPage/></ProtectedRoute>)
             },
             {
                 path:ROUTES.SETTINGS,
-                element:<SettingsPage/>
+                element:(
+                    <ProtectedRoute>
+                        <SettingsPage/>
+                    </ProtectedRoute>
+                    )
             },
         ]
     },
@@ -37,11 +44,19 @@ const router = createBrowserRouter([
         children:[
             {
                 path:"/auth/login",
-                element:<LoginPage/>
+                element:(
+                    <PublicRoute>
+                        <LoginPage/>
+                    </PublicRoute>
+             )
             },
             {
                 path:"/auth/register",
-                element:<RegisterPage/>
+                element:(
+                    <PublicRoute>
+                        <RegisterPage/>
+                    </PublicRoute>
+            )
             },
         ],
     },
