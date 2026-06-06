@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 
 import { ROUTES } from "../routes/routes";
 import AuthButton from "../features/auth/components/AuthButton";
@@ -14,7 +15,11 @@ const LoginPage = () =>{
     const {login} = useAuth();
     const navigate = useNavigate();
     const onSubmit = (data)=>{
-        login(data);
+        const isLogin = login(data);
+        if(!isLogin){
+            toast.error("Invalid email or password!");
+            return;
+        }
         reset();
         navigate(ROUTES.HOME);
     }
