@@ -3,4 +3,6 @@ export const ROUTES = {
     BOARD:'/board/:boardId',
     ACTIVITY:'/activity',
     SETTINGS:'/settings',
+    REGISTER:'/auth/register',
+    LOGIN:'/auth/login',
 }
