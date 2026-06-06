@@ -3,13 +3,18 @@ import { useForm } from "react-hook-form";
 import AuthInput from "../features/auth/components/AuthInput";
 import AuthButton from "../features/auth/components/AuthButton";
 import {ROUTES} from '../routes/routes';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerValidationSchema } from "../features/auth/utils/registerValidationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import useAuth from "../features/auth/hooks/useAuth";
 const RegisterPage = () =>{
-    const {register, handleSubmit, formState:{errors}} = useForm({resolver:zodResolver(registerValidationSchema)});
+    const {register, handleSubmit, reset,formState:{errors}} = useForm({resolver:zodResolver(registerValidationSchema)});
+    const {register:registerUser} = useAuth();
+    const navigate = useNavigate();
     const onSubmit = (data) =>{
-        console.log(data)
+        registerUser(data);
+        reset();
+        navigate(ROUTES.HOME);
     }
     return(
         <AuthCard title="Register">

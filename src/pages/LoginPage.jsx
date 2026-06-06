@@ -1,17 +1,22 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../routes/routes";
+import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { ROUTES } from "../routes/routes";
 import AuthButton from "../features/auth/components/AuthButton";
 import AuthCard from "../features/auth/components/AuthCard";
 import AuthInput from "../features/auth/components/AuthInput";
 import { loginValidationSchema } from "../features/auth/utils/loginValidationSchema";
+import useAuth from "../features/auth/hooks/useAuth";
 
 const LoginPage = () =>{
-    const {register, handleSubmit, formState:{errors}} = useForm({resolver: zodResolver(loginValidationSchema)});
+    const {register, handleSubmit, formState:{errors}, reset} = useForm({resolver: zodResolver(loginValidationSchema)});
+    const {login} = useAuth();
+    const navigate = useNavigate();
     const onSubmit = (data)=>{
-        console.log(data)
+        login(data);
+        reset();
+        navigate(ROUTES.HOME);
     }
     return(
         <AuthCard title="Login">
