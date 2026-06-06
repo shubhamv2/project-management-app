@@ -1,16 +1,30 @@
-# React + Vite
+# Project Management App 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern project management application inspired by Trello.
 
-Currently, two official plugins are available:
+User can create boards, lists, cards, assign users, add comments, 
+move cards, track activity and manage project workflow.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+## features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Authentication
+- Boards
+- Lists
+- Cards
+- Drag and Drop
+- Labels
+- Due Dates
+- Comments
+- Activity Timeline
+- Member Assignment
+- Dark Mode
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+Frontend:
+- React
+- Vite
+- Tailwindcss
+
