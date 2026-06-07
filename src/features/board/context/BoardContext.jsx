@@ -1,14 +1,15 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-
+import { mockList } from "../../lists/data/mockList";
 import { mockBoards } from "../data/mockBoards";
 import { boardReducer } from "../reducers/boardReducer";
 import { boardActions } from "../constant/boardActions";
+
 
 export const BoardContext = createContext();
 
 const initialState = {
     boards: mockBoards,
-    lists: [],
+    lists: mockList,
     cards: [],
 }
 export const BoardProvider = ({ children }) => {
