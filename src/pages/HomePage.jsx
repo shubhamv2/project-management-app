@@ -1,12 +1,11 @@
 import { SquarePlus } from "lucide-react";
 import BoardContainer from "../features/board/components/BoardContainer";
 import useBoard from "../features/board/hooks/useBoard";
-import { boardActions } from "../features/board/constant/boardActions";
 import { useEffect, useState } from "react";
 import CreateBoardModal from "../features/board/components/CreateBoardModal";
 import { BOARD_COLORS } from "../features/board/constant/boardColors";
 const HomePage = () => {
-    const { state, dispatch } = useBoard();
+    const { state, createBoard } = useBoard();
     const [modalOpen, setModalOpen] = useState(false);
 
     const [boardForm, setBoardForm] = useState({
@@ -15,15 +14,7 @@ const HomePage = () => {
     })
     const handleCreateBoard = () => {
         if(!boardForm.title.trim()) return;
-        dispatch({
-            type: boardActions.CREATE_BOARD,
-            payload: {
-                id: crypto.randomUUID(),
-                title:boardForm.title,
-                color: boardForm.selectedColor.twClass,
-                listIds: [],
-            }
-        })
+        createBoard({title:boardForm.title, color:boardForm.selectedColor.twClass});
         setModalOpen(false);
         setBoardForm({
             title:"",

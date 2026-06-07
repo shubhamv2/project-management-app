@@ -11,7 +11,7 @@ const CreateBoardModal = ({ isOpen, onClose, boardColors,handleCreateBoard, boar
             <div className="space-y-4">
                 <div>
                     <label className="block mb-1 text-md" htmlFor="title">Board Title</label>
-                    <input value={boardForm.title} onChange={(e)=>setBoardForm(prev=>({...prev,title:e.target.value}))} className="w-full outline-none bg-slate-700 p-2 rounded-lg" type="text" placeholder="eg. Marketing campaign Q4" />
+                    <input value={boardForm.title} onChange={(e)=>setBoardForm(prev=>({...prev,title:e.target.value}))} className="w-full outline-none bg-slate-700 p-3 rounded-lg" type="text" placeholder="eg. Marketing campaign Q4" />
                 </div>
                 <BoardColorSelector boardColors={boardColors} selectedColor={boardForm.selectedColor} handleColorSelect={handleColorSelect}/>
 
