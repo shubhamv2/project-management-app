@@ -1,8 +1,11 @@
 import AppRouter from "./app/router/AppRouter"
-
+import { Toaster } from "react-hot-toast";
 const App = () =>{
   return(
-    <AppRouter/>
+    <>
+      <AppRouter/>
+      <Toaster position="top-right" reverseOrder={false} />
+    </>
   )
 }
 
