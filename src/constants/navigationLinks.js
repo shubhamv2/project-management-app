@@ -1,5 +1,5 @@
 import {ROUTES} from '../routes/routes'
-export const navLinks = [
+export const navigationLinks = [
     {
         label:"Home",
         path:ROUTES.HOME,

@@ -15,11 +15,11 @@ const Navbar = () =>{
                         <UserCircle size="35" strokeWidth="1"/>
                         <span className="text-xs whitespace-nowrap">{user?.name.split(" ")[0]}</span>
                     </div>
-                    <button className="bg-red-500 px-2 py-1 text-sm rounded-lg" onClick={logout}>Logout</button>
+                    <button className="bg-red-500 px-2 py-1 rounded-lg" onClick={logout}>Logout</button>
                 </div>:
                 <div className="flex gap-4">
-                    <Link className="bg-blue-500 px-2 py-1 rounded-lg text-sm" to={ROUTES.LOGIN}>Login</Link>
-                    <Link className="bg-blue-500 px-2 py-1 rounded-lg text-sm" to={ROUTES.REGISTER}>Register</Link>
+                    <Link className="bg-blue-500 px-2 py-1 rounded-lg " to={ROUTES.LOGIN}>Login</Link>
+                    <Link className="bg-blue-500 px-2 py-1 rounded-lg " to={ROUTES.REGISTER}>Register</Link>
                 </div>
             }
 
