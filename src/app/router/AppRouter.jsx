@@ -68,11 +68,9 @@ const router = createBrowserRouter([
 ])
 
 
-const AppRouter = ({children}) =>{
+const AppRouter = () =>{
     return (
-        <RouterProvider router={router}>
-            {children}
-        </RouterProvider>
+        <RouterProvider router={router}/>
     )
 
 }

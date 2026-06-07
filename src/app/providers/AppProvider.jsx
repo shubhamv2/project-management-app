@@ -1,9 +1,11 @@
 import { AuthProvider } from "../../features/auth/context/AuthContext";
-
+import { BoardProvider } from "../../features/board/context/BoardContext";
 const AppProvider = ({children}) =>{
     return(
         <AuthProvider>
-            {children}
+            <BoardProvider>
+                {children}
+            </BoardProvider>
         </AuthProvider>
     )
 }
