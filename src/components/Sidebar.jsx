@@ -7,7 +7,7 @@ const Sidebar = () =>{
             <div className="flex flex-col mt-6">
                 {
                     navigationLinks.map(link=>(
-                        <NavLink to={link.path} className={({isActive})=>`p-3 rounded-lg  ${isActive?"bg-slate-700":"hover:bg-slate-800"}`}>{link.label}</NavLink>
+                        <NavLink to={link.path} key={link.label} className={({isActive})=>`p-3 rounded-lg  ${isActive?"bg-slate-700":"hover:bg-slate-800"}`}>{link.label}</NavLink>
                     ))
                 }
             </div>

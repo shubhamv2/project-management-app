@@ -4,7 +4,6 @@ import useAuth from '../features/auth/hooks/useAuth';
 import { UserCircle } from "lucide-react";
 const Navbar = () =>{
     const {isAuthenticated,logout, user} = useAuth();
-    console.log(isAuthenticated,user)
     return(
         <header className="h-16 px-6 flex items-center justify-end border-b border-slate-800 gap-6">
             <input type="text" placeholder="Global search..." className="bg-slate-800 p-2 rounded-lg w-full max-w-lg outline-none border-slate-700" />
