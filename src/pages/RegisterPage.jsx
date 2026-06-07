@@ -12,7 +12,11 @@ const RegisterPage = () =>{
     const {register:registerUser} = useAuth();
     const navigate = useNavigate();
     const onSubmit = (data) =>{
-        registerUser(data);
+        const isRegistered = registerUser(data);
+        if(!isRegistered){
+            toast.error("Registration failed!");
+            return;
+        }
         reset();
         navigate(ROUTES.HOME);
     }
