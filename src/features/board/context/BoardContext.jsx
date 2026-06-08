@@ -3,7 +3,7 @@ import { mockList } from "../../lists/data/mockList";
 import { mockBoards } from "../data/mockBoards";
 import { boardReducer } from "../reducers/boardReducer";
 import { boardActions } from "../constant/boardActions";
-
+import useAuth from '../../auth/hooks/useAuth'
 
 export const BoardContext = createContext();
 
@@ -17,6 +17,7 @@ export const BoardProvider = ({ children }) => {
         const data = localStorage.getItem('pmData');
         return data ? JSON.parse(data) : initialState;
     })
+    const {user} = useAuth();
     const [state, dispatch] = useReducer(boardReducer, pmData);
 
 
@@ -46,6 +47,27 @@ export const BoardProvider = ({ children }) => {
             payload:{
                 boardId: boardId,
                 newList,
+            }
+        })
+    }
+
+    const createCard = ({listId, title}) =>{
+        const newCard = {
+            id:crypto.randomUUID(),
+            title,
+            createdAt: new Date().toISOString(),
+            createdBy: user.id,
+            labels:[],
+            checkLists:[],
+            memberIds:[],
+            activities:[],
+
+        }
+        dispatch({
+            type:boardActions.CREATE_CARD,
+            payload:{
+                listId,
+                newCard,
             }
         })
     }
