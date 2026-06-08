@@ -9,3 +9,21 @@ body{
 button{
     cursor: pointer;
 }
+
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #010e2e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b4660;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1a2950;
+}

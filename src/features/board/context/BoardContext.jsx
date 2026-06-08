@@ -1,14 +1,15 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-
+import { mockList } from "../../lists/data/mockList";
 import { mockBoards } from "../data/mockBoards";
 import { boardReducer } from "../reducers/boardReducer";
 import { boardActions } from "../constant/boardActions";
+
 
 export const BoardContext = createContext();
 
 const initialState = {
     boards: mockBoards,
-    lists: [],
+    lists: mockList,
     cards: [],
 }
 export const BoardProvider = ({ children }) => {
@@ -33,13 +34,29 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
+    const createList = ({boardId, title}) =>{
+        const newList = {
+            id:crypto.randomUUID(),
+            title,
+            cardIds:[],
+            createdAt: new Date().toISOString(),
+        }
+        dispatch({
+            type:boardActions.CREATE_LIST,
+            payload:{
+                boardId: boardId,
+                newList,
+            }
+        })
+    }
+
 
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
     return (
 
-        <BoardContext.Provider value={{ state, createBoard }}>
+        <BoardContext.Provider value={{ state, createBoard,createList }}>
             {children}
         </BoardContext.Provider>
     )
