@@ -1,6 +1,6 @@
 import AddListCard from "./AddListCard";
 import ListColumn from "./ListColumn";
-const ListContainer = ({lists}) =>{
+const ListContainer = ({lists, setModalOpen}) =>{
     console.log(lists);
     return(
         <div className="flex gap-4 overflow-x-auto min-h-100 items-start">
@@ -10,7 +10,7 @@ const ListContainer = ({lists}) =>{
                 ))
 
             }
-            <AddListCard/>
+            <AddListCard setModalOpen={setModalOpen}/>
         </div>
     )
 }
