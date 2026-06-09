@@ -1,8 +1,13 @@
 import CardItem from "./CardItem";
-const CardContainer = () =>{
+const CardContainer = ({cards}) =>{
     return(
-        <div>
-            <CardItem/>
+        <div className="flex flex-col gap-3">
+            {
+                cards.map(card=>(
+                    
+                    <CardItem key={card.id} card={card}/>
+                ))
+            }
         </div>
     )
 }

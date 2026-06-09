@@ -1,0 +1,35 @@
+export const mockCard = {
+    "card-1": {
+        id: "card-1",
+        title: "Navigation bar",
+        createdAt: new Date().toISOString(),
+        createdBy: "Shubham",
+        labels: [],
+        checkLists: [],
+        memberIds: [],
+        activities: [],
+        dueDate: new Date().toISOString(),
+    },
+    "card-2": {
+        id: "card-2",
+        title: "UI/UX",
+        createdAt: new Date().toISOString(),
+        createdBy: "Kartik",
+        labels: [],
+        checkLists: [],
+        memberIds: [],
+        activities: [],
+        dueDate: new Date().toISOString(),
+    },
+    "card-3": {
+        id: "card-3",
+        title:"Bug Fix",
+        createdAt: new Date().toISOString(),
+        createdBy: "Swapnil",
+        labels: [],
+        checkLists: [],
+        memberIds: [],
+        activities: [],
+        dueDate: new Date().toISOString(),
+    }
+}

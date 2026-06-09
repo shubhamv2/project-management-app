@@ -1,6 +1,6 @@
 import { Clock, Watch } from "lucide-react";
 
-const CardItem = ({card={title:"Change navigation links", dueDate:new Date().toISOString()}}) =>{
+const CardItem = ({card}) =>{
     return(
         <div className="bg-slate-600 p-3 rounded-lg space-y-3 cursor-pointer">
             <h4 className="font-semibold">{card.title}</h4>

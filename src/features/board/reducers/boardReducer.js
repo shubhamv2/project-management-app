@@ -21,11 +21,9 @@ export const boardReducer = (state, action) =>{
 
         case boardActions.CREATE_CARD:{
             const {listId, newCard} = action.payload;
-            const updatedList = state.lists.map(list=>list.id === listId?{...list,cardIds:[newCard.id]}:list);
-
             return {
                 ...state,
-                lists:updatedList,
+                lists:{...state.lists,[listId]:{...state.lists[listId],cardIds:[...state.lists[listId].cardIds,newCard.id]}},
                 cards:{...state.cards,[newCard.id]:newCard},
             }
         }

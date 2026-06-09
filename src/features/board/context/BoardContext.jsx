@@ -4,13 +4,13 @@ import { mockBoards } from "../data/mockBoards";
 import { boardReducer } from "../reducers/boardReducer";
 import { boardActions } from "../constant/boardActions";
 import useAuth from '../../auth/hooks/useAuth'
-
+import { mockCard } from "../../cards/data/mockCard";
 export const BoardContext = createContext();
 
 const initialState = {
     boards: mockBoards,
     lists: mockList,
-    cards: [],
+    cards: mockCard,
 }
 export const BoardProvider = ({ children }) => {
     const [pmData, setPmData] = useState(() => {
@@ -78,7 +78,7 @@ export const BoardProvider = ({ children }) => {
     },[state]);
     return (
 
-        <BoardContext.Provider value={{ state, createBoard,createList }}>
+        <BoardContext.Provider value={{ state, createBoard,createList, createCard }}>
             {children}
         </BoardContext.Provider>
     )
