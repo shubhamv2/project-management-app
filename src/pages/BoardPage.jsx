@@ -27,10 +27,11 @@ const BoardPage = () =>{
         const {active, over} = event;
         if(!over) return;
         const sourceList = findListForCard(state,active.id);
+        
+
         const destinationList = state.lists[over.id]?state.lists[over.id]:findListForCard(state, over.id);
         if(!sourceList || !destinationList) return;
         
-        console.log(active,over, sourceList, destinationList)
         const sourceIndex = sourceList.cardIds.indexOf(active.id);
         const destinationIndex = destinationList.cardIds.indexOf(over.id);
         
@@ -48,7 +49,7 @@ const BoardPage = () =>{
     return(
         <div className="">
             <h2 className="text-4xl font-bold mb-8">Manage workflow</h2>
-            <DndProvider onDragEnd={handleOnDrag}>
+            <DndProvider onDragEnd={handleOnDrag} cards={state.cards}>
                 <ListContainer lists={lists} setModalOpen={setModalOpen} cards={state.cards} setSelectedList={setSelectedList} setCardModalOpen={setCardModalOpen} />
             </DndProvider>
             

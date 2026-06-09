@@ -2,10 +2,11 @@ import { Clock, Watch } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 const CardItem = ({card}) =>{
-    const {attributes, setNodeRef,listeners, transform, transition} = useSortable({id:card.id});
+    const {attributes, setNodeRef,listeners, transform, transition, isDragging} = useSortable({id:card.id});
     const style = {
         transform: CSS.Transform.toString(transform),
         transition,
+        opacity:isDragging?0:1,
     }
     return(
         <div style={style} ref={setNodeRef} className="bg-slate-600 p-3 rounded-lg space-y-3 cursor-pointer" {...attributes} {...listeners}>
