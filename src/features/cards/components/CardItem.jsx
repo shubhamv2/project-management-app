@@ -1,8 +1,14 @@
 import { Clock, Watch } from "lucide-react";
-
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 const CardItem = ({card}) =>{
+    const {attributes, setNodeRef,listeners, transform, transition} = useSortable({id:card.id});
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+    }
     return(
-        <div className="bg-slate-600 p-3 rounded-lg space-y-3 cursor-pointer">
+        <div style={style} ref={setNodeRef} className="bg-slate-600 p-3 rounded-lg space-y-3 cursor-pointer" {...attributes} {...listeners}>
             <h4 className="font-semibold">{card.title}</h4>
             <div className="grid grid-cols-4 text-xs gap-2">
                 <span className="bg-amber-400 p-0.5 text-amber-600 rounded-lg">Urgent</span>
