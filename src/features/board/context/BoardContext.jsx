@@ -8,9 +8,9 @@ import { mockCard } from "../../cards/data/mockCard";
 export const BoardContext = createContext();
 
 const initialState = {
-    boards: mockBoards,
-    lists: mockList,
-    cards: mockCard,
+    boards: [],
+    lists: {},
+    cards: {},
 }
 export const BoardProvider = ({ children }) => {
     const [pmData, setPmData] = useState(() => {
@@ -57,10 +57,13 @@ export const BoardProvider = ({ children }) => {
             title,
             createdAt: new Date().toISOString(),
             createdBy: user.id,
+            description:"",
             labels:[],
             checkLists:[],
             memberIds:[],
             activities:[],
+            comments:[],
+            dueDate: new Date().toISOString(),
 
         }
         dispatch({
