@@ -27,6 +27,31 @@ export const boardReducer = (state, action) =>{
                 cards:{...state.cards,[newCard.id]:newCard},
             }
         }
+        case boardActions.MOVE_CARD:{
+            const {cardId, sourceListId, destinationListId, sourceIndex, destinationIndex} = action.payload;
+            const sourceList = state.lists[sourceListId];
+            const destinationList = state.lists[destinationListId]
+            //same list reorder
+            if(sourceListId === destinationListId){
+                const updatedIds = [...sourceList.cardIds];
+                updatedIds.splice(sourceIndex, 1);
+                updatedIds.splice(destinationIndex, 0, cardId);
+
+                return {
+                    ...state,
+                    lists:{...state.lists,[sourceListId]:{...sourceList,cardIds:updatedIds}}
+                }
+            }
+
+
+            //move between lists
+            const sourceIds = [...sourceList.cardIds]
+            const destinationIds = [...destinationList.cardIds]
+            sourceIds.splice(sourceIndex,1);
+            destinationIds.splice(destinationIndex,0,cardId);
+            return {...state, lists:{...state.lists,[sourceListId]:{...sourceList,cardIds:sourceIds},[destinationListId]:{...destinationList,cardIds:destinationIds}}};
+
+        }
         default:
             return state;
     }

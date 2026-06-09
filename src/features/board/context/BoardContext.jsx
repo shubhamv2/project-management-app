@@ -71,6 +71,12 @@ export const BoardProvider = ({ children }) => {
             }
         })
     }
+    const moveCard = (data)=>{
+        dispatch({
+            type:boardActions.MOVE_CARD,
+            payload:data,
+        })
+    }
 
 
     useEffect(()=>{
@@ -78,7 +84,7 @@ export const BoardProvider = ({ children }) => {
     },[state]);
     return (
 
-        <BoardContext.Provider value={{ state, createBoard,createList, createCard }}>
+        <BoardContext.Provider value={{ state, createBoard,createList, createCard, moveCard }}>
             {children}
         </BoardContext.Provider>
     )
