@@ -54,7 +54,7 @@ const BoardPage = () =>{
             </DndProvider>
             
             <CreateListModal handleCreateList={handleCreateList} isOpen={modalOpen} onClose={()=>setModalOpen(false)} listTitle={listTitle} setListTitle={setListTitle}/>
-            <CreateCardModal isOpen={cardModalOpen} onClose={setCardModalOpen} listId={selectedList?.id}/>
+            <CreateCardModal isOpen={cardModalOpen} onClose={()=>setCardModalOpen(false)} listId={selectedList?.id}/>
         </div>
     )
 }
