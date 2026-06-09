@@ -1,4 +1,5 @@
 export const modalTypes = {
     CREATE_BOARD:"CREATE_BOARD",
+    CREATE_LIST:"CREATE_LIST",
     CARD_DETAILS:"CARD_DETAILS",
 }
