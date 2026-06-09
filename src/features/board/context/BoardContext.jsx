@@ -3,20 +3,21 @@ import { mockList } from "../../lists/data/mockList";
 import { mockBoards } from "../data/mockBoards";
 import { boardReducer } from "../reducers/boardReducer";
 import { boardActions } from "../constant/boardActions";
-
-
+import useAuth from '../../auth/hooks/useAuth'
+import { mockCard } from "../../cards/data/mockCard";
 export const BoardContext = createContext();
 
 const initialState = {
     boards: mockBoards,
     lists: mockList,
-    cards: [],
+    cards: mockCard,
 }
 export const BoardProvider = ({ children }) => {
     const [pmData, setPmData] = useState(() => {
         const data = localStorage.getItem('pmData');
         return data ? JSON.parse(data) : initialState;
     })
+    const {user} = useAuth();
     const [state, dispatch] = useReducer(boardReducer, pmData);
 
 
@@ -50,13 +51,34 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
+    const createCard = ({listId, title}) =>{
+        const newCard = {
+            id:crypto.randomUUID(),
+            title,
+            createdAt: new Date().toISOString(),
+            createdBy: user.id,
+            labels:[],
+            checkLists:[],
+            memberIds:[],
+            activities:[],
+
+        }
+        dispatch({
+            type:boardActions.CREATE_CARD,
+            payload:{
+                listId,
+                newCard,
+            }
+        })
+    }
+
 
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
     return (
 
-        <BoardContext.Provider value={{ state, createBoard,createList }}>
+        <BoardContext.Provider value={{ state, createBoard,createList, createCard }}>
             {children}
         </BoardContext.Provider>
     )

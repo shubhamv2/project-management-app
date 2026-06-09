@@ -18,6 +18,15 @@ export const boardReducer = (state, action) =>{
                 }
             }
         }
+
+        case boardActions.CREATE_CARD:{
+            const {listId, newCard} = action.payload;
+            return {
+                ...state,
+                lists:{...state.lists,[listId]:{...state.lists[listId],cardIds:[...state.lists[listId].cardIds,newCard.id]}},
+                cards:{...state.cards,[newCard.id]:newCard},
+            }
+        }
         default:
             return state;
     }
