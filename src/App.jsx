@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import CardDetailsModal from "./features/cards/components/CardDetailsModal";
 import CreateBoardModal from "./features/board/components/CreateBoardModal";
 import CreateListModal from './features/lists/components/CreateListModal';
+import CreateCardModal from "./features/cards/components/CreateCardModal";
 
 const App = () =>{
   return(
@@ -11,6 +12,7 @@ const App = () =>{
       <CardDetailsModal/>
       <CreateBoardModal/>
       <CreateListModal/>
+      <CreateCardModal/>
       <Toaster position="top-right" reverseOrder={false} />
     </>
   )

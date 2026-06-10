@@ -11,17 +11,12 @@ const BoardPage = () =>{
     const board = state.boards.find(board=>board.id === boardId);
     if(!board) return (<div className="p-20">Board not found</div>)
     const lists = board.listIds.map(listId=>state.lists[listId]);
-    const [cardModalOpen, setCardModalOpen] = useState(false);
-    const [selectedList, setSelectedList] = useState(null);
-    
-
 
     const handleOnDrag = (event) =>{
         const {active, over} = event;
         if(!over) return;
         const sourceList = findListForCard(state,active.id);
         
-
         const destinationList = state.lists[over.id]?state.lists[over.id]:findListForCard(state, over.id);
         if(!sourceList || !destinationList) return;
         
@@ -43,9 +38,11 @@ const BoardPage = () =>{
         <div className="">
             <h2 className="text-4xl font-bold mb-8">Manage workflow</h2>
             <DndProvider onDragEnd={handleOnDrag} cards={state.cards}>
-                <ListContainer lists={lists}  board={board} cards={state.cards} setSelectedList={setSelectedList} setCardModalOpen={setCardModalOpen} />
+                <ListContainer lists={lists}  
+                board={board} 
+                cards={state.cards}  />
             </DndProvider>
-            <CreateCardModal isOpen={cardModalOpen} onClose={()=>setCardModalOpen(false)} listId={selectedList?.id}/>
+            
         </div>
     )
 }
