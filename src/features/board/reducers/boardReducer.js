@@ -52,6 +52,36 @@ export const boardReducer = (state, action) =>{
             return {...state, lists:{...state.lists,[sourceListId]:{...sourceList,cardIds:sourceIds},[destinationListId]:{...destinationList,cardIds:destinationIds}}};
 
         }
+
+
+
+        case boardActions.ADD_CHECK_LIST:{
+            const {cardId, newCheckList} = action.payload;
+            return {
+                ...state,
+                cards:{
+                    ...state.cards,
+                    [cardId]:{
+                        ...state.cards[cardId],
+                        checkLists:[...state.cards[cardId].checkLists, newCheckList]   
+                    }
+                }
+            }
+        }
+
+        case boardActions.TOGGLE_CHECK_LIST:
+            return {
+                ...state,
+                cards:{
+                    ...state.cards,
+                    [action.payload.cardId]:{
+                        ...state.cards[action.payload.cardId],
+                        checkLists: state.cards[action.payload.cardId].checkLists.map(checkList=>{
+                            return checkList.id === action.payload.checkListId?{...checkList, isCompleted:!checkList.isCompleted}:checkList;
+                        })
+                    }
+                }
+            }
         default:
             return state;
     }

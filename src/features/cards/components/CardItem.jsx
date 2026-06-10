@@ -14,10 +14,8 @@ const CardItem = ({ card }) => {
     return (
         <div style={style}
             ref={setNodeRef}
-            className="cursor-grab bg-slate-600 p-3 rounded-lg relative w-full"
-            
-            
-        >
+            className="cursor-grab bg-slate-600 p-3 rounded-lg relative w-full">
+                
             <div {...attributes} {...listeners} className="absolute right-3 top-3">
                 <Grip size={20}/>
             </div>

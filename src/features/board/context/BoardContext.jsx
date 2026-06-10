@@ -51,13 +51,13 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
-    const createCard = ({listId, title}) =>{
+    const createCard = ({listId, data}) =>{
         const newCard = {
             id:crypto.randomUUID(),
-            title,
+            title:data.title,
             createdAt: new Date().toISOString(),
             createdBy: user.id,
-            description:"",
+            description:data.description,
             labels:[],
             checkLists:[],
             memberIds:[],
@@ -82,12 +82,40 @@ export const BoardProvider = ({ children }) => {
     }
 
 
+
+    const addCheckList = (cardId,label="") =>{
+        const newCheckList = {
+            id:crypto.randomUUID(),
+            label,
+            isCompleted:false,
+            addedBy: user.name,
+        }
+        dispatch({
+            type:boardActions.ADD_CHECK_LIST,
+            payload:{
+                cardId,
+                newCheckList,
+            },
+        })
+    }
+
+    const toggleCheckList = (cardId, checkListId) =>{
+        dispatch({
+            type:boardActions.TOGGLE_CHECK_LIST,
+            payload:{
+                cardId,
+                checkListId,
+            },
+        })
+    }
+
+
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
     return (
 
-        <BoardContext.Provider value={{ state, createBoard,createList, createCard, moveCard }}>
+        <BoardContext.Provider value={{ state, createBoard,createList, createCard, moveCard, addCheckList, toggleCheckList }}>
             {children}
         </BoardContext.Provider>
     )
