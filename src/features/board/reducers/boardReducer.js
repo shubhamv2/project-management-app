@@ -99,6 +99,25 @@ export const boardReducer = (state, action) =>{
                 cards: updatedCards,
             }
         }
+
+
+
+        case boardActions.ADD_COMMENT:{
+            const {cardId, newComment} = action.payload;
+            return {
+                ...state,
+                cards:{
+                    ...state.cards,
+                    [cardId]:{
+                        ...state.cards[cardId],
+                        comments:[
+                            ...state.cards[cardId].comments,
+                            newComment,
+                        ]
+                    }
+                }
+            }
+        }
         default:
             return state;
     }

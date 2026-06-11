@@ -116,6 +116,23 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
+
+    const addComment = (comment,cardId) =>{
+        const newComment = {
+            id:crypto.randomUUID(),
+            title:comment,
+            user:user.name,
+            createdAt: new Date().toISOString(),
+        }
+        dispatch({
+            type:boardActions.ADD_COMMENT,
+            payload:{
+                cardId,
+                newComment,
+            },
+        })
+    }
+
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
@@ -124,7 +141,7 @@ export const BoardProvider = ({ children }) => {
         <BoardContext.Provider value={{ state, createBoard,
         createList, createCard, 
         moveCard, addCheckList, 
-        toggleCheckList, deleteCard }}>
+        toggleCheckList, deleteCard, addComment }}>
             {children}
         </BoardContext.Provider>
     )
