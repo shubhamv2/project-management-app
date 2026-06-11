@@ -4,4 +4,5 @@ export const modalTypes = {
     CREATE_CARD:"CREATE_CARD",
     CARD_DETAILS:"CARD_DETAILS",
     CARD_DELETE: "CARD_DELETE",
+    ADD_MEMBER:"ADD_MEMBER",
 }

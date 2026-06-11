@@ -3,9 +3,9 @@ import useModal from '../../modal/hooks/useModal';
 import { modalTypes } from '../../modal/data/modalTypes';
 import useBoard from '../../board/hooks/useBoard';
 import { useState } from 'react';
-const CreateListModal = () => {
+const CreateListModal = ({modal}) => {
     const { createList } = useBoard();
-    const { modal, closeModal } = useModal();
+    const {closeModal } = useModal();
     const [title, setTitle] = useState("");
     if (modal.modalType !== modalTypes.CREATE_LIST) return null;
 

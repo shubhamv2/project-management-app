@@ -60,7 +60,7 @@ export const BoardProvider = ({ children }) => {
             description:data.description,
             labels:[],
             checkLists:[],
-            memberIds:[],
+            members:[],
             activities:[],
             comments:[],
             dueDate: data.dueDate,
@@ -133,6 +133,17 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
+
+    const addMember = (cardId, members) =>{
+        dispatch({
+            type:boardActions.ADD_MEMBER,
+            payload:{
+                cardId,
+                members,
+            }
+        })
+    }
+
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
@@ -141,7 +152,7 @@ export const BoardProvider = ({ children }) => {
         <BoardContext.Provider value={{ state, createBoard,
         createList, createCard, 
         moveCard, addCheckList, 
-        toggleCheckList, deleteCard, addComment }}>
+        toggleCheckList, deleteCard, addComment, addMember }}>
             {children}
         </BoardContext.Provider>
     )

@@ -3,8 +3,8 @@ import useBoard from "../../board/hooks/useBoard";
 import { modalTypes } from "../../modal/data/modalTypes";
 import useModal from "../../modal/hooks/useModal";
 
-const ConfimDeleteModal = () =>{
-    const {modal,closeModal} = useModal();
+const ConfimDeleteModal = ({modal}) =>{
+    const {closeModal} = useModal();
     const {deleteCard} = useBoard();
     if(modal.modalType !== modalTypes.CARD_DELETE) return null;
     console.log(modal)

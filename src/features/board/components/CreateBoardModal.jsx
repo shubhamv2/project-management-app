@@ -6,12 +6,12 @@ import { modalTypes } from "../../modal/data/modalTypes";
 import { BOARD_COLORS } from "../constant/boardColors";
 import useBoard from "../hooks/useBoard";
 
-const CreateBoardModal = () => {
+const CreateBoardModal = ({modal}) => {
     const [boardForm, setBoardForm] = useState({
         title: "",
         selectedColor: BOARD_COLORS[0],
     })
-    const { modal, closeModal } = useModal();
+    const {closeModal } = useModal();
     const {createBoard} = useBoard();
     if (modal.modalType !== modalTypes.CREATE_BOARD) return null;
     

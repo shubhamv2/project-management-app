@@ -7,4 +7,5 @@ export const boardActions = {
     TOGGLE_CHECK_LIST:"TOGGLE_CHECK_LIST",
     DELETE_CARD:"DELETE_CARD",
     ADD_COMMENT:"ADD_COMMENT",
+    ADD_MEMBER:"ADD_MEMBER"
 }

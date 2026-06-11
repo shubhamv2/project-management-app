@@ -1,6 +1,6 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
-import useBoard from "../../board/hooks/useBoard";
+import useBoard from "../../../board/hooks/useBoard";
 
 const CommentBar = ({cardId}) => {
     const [comment, setComment] = useState("");

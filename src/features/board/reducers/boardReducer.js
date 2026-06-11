@@ -118,6 +118,23 @@ export const boardReducer = (state, action) =>{
                 }
             }
         }
+
+
+        case boardActions.ADD_MEMBER:{
+            const {cardId, members} = action.payload;
+            return {
+                ...state,
+                cards:{
+                    ...state.cards,
+                    [cardId]:{
+                        ...state.cards[cardId],
+                        members:[...state.cards[cardId].members,...members]
+                    }
+                }
+            }
+        }
+
+
         default:
             return state;
     }

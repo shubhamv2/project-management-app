@@ -3,28 +3,33 @@ import { createContext, useState } from "react"
 
 export const ModalContext = createContext();
 
-export const ModalProvider = ({children}) =>{
-    const [modal, setModal] = useState({
-        modalType:null,
-        modalData:null,
-    });
+export const ModalProvider = ({ children }) => {
 
-    const openModal = (modalType, modalData=null)=>{
-        setModal({
-            modalType,
-            modalData
-        })
+    const [modals, setModals] = useState([]);
+
+
+    const openModal = (modalType, modalData = null) => {
+        
+        setModals(prev => [
+            ...prev,
+            {
+                id: crypto.randomUUID(),
+                modalType,
+                modalData,
+            }
+        ])
     }
 
-    const closeModal = () =>{
-        setModal({
-            modalType:null,
-            modalData:null,
-        })
+    const closeModal = () => {
+        setModals(prev=>prev.slice(0,-1));
     }
 
-    const value = {modal, openModal, closeModal}
-    return(
+    const closeModalById = (id) =>{
+        setModals(prev=>prev.filter(modal=>modal.id!==id))
+    }
+
+    const value = { modals, openModal, closeModal }
+    return (
         <ModalContext.Provider value={value}>
             {children}
         </ModalContext.Provider>

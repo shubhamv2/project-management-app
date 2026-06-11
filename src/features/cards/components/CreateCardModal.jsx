@@ -3,7 +3,7 @@ import Modal from "../../../components/Modal"
 import useBoard from "../../board/hooks/useBoard";
 import useModal from "../../modal/hooks/useModal";
 import { modalTypes } from "../../modal/data/modalTypes";
-const CreateCardModal = ({ listId }) => {
+const CreateCardModal = ({ modal }) => {
     const [cardForm, setCardForm] = useState({
         title: "",
         descrition: "",
@@ -15,7 +15,7 @@ const CreateCardModal = ({ listId }) => {
     }
 
 
-    const { modal, closeModal } = useModal();
+    const {closeModal } = useModal();
     const { createCard } = useBoard();
 
     if (modal.modalType !== modalTypes.CREATE_CARD) return null;
