@@ -6,6 +6,7 @@ import CreateListModal from "../../lists/components/CreateListModal";
 import useModal from "../hooks/useModal";
 import { modalTypes } from "../data/modalTypes";
 import AddMemberModal from "../../cards/components/member/AddMemberModal";
+import DuedataModal from "../../cards/components/duedate/DuedateModal";
 
 const RootModal = () =>{
     const {modals} = useModal();
@@ -26,6 +27,8 @@ const RootModal = () =>{
                             return <ConfimDeleteModal key={modal.id} modal={modal}/>
                         case modalTypes.ADD_MEMBER:
                             return <AddMemberModal key={modal.id} modal={modal}/>
+                        case modalTypes.CHANGE_DUE_DATE:
+                            return <DuedataModal key={modal.id} modal={modal}/>
                         default:
                             return null;
                     }

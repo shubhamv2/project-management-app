@@ -20,7 +20,7 @@ const SidebarActions = ({setShowCheckListInput,cardId}) => {
                 <Tag size={20} />
                 <span >Labels</span>
             </button>
-            <button className="flex gap-2 items-center text-sm w-full p-2 rounded-lg hover:bg-slate-600">
+            <button onClick={()=>openModal(modalTypes.CHANGE_DUE_DATE, cardId)} className="flex gap-2 items-center text-sm w-full p-2 rounded-lg hover:bg-slate-600">
                 <Calendar size={20} />
                 <span >Due Date</span>
             </button>

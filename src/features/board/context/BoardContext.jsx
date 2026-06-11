@@ -144,6 +144,16 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
+    const dueDateChange = (cardId, date) =>{
+        dispatch({
+            type:boardActions.CHANGE_DUE_DATE,
+            payload:{
+                cardId,
+                date,
+            }
+        })
+    }
+
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
@@ -152,7 +162,7 @@ export const BoardProvider = ({ children }) => {
         <BoardContext.Provider value={{ state, createBoard,
         createList, createCard, 
         moveCard, addCheckList, 
-        toggleCheckList, deleteCard, addComment, addMember }}>
+        toggleCheckList, deleteCard, addComment, addMember, dueDateChange }}>
             {children}
         </BoardContext.Provider>
     )
