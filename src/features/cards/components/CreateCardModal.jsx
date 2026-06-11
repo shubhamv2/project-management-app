@@ -5,12 +5,13 @@ import useModal from "../../modal/hooks/useModal";
 import { modalTypes } from "../../modal/data/modalTypes";
 const CreateCardModal = ({ listId }) => {
     const [cardForm, setCardForm] = useState({
-        title:"",
-        descrition:"",
+        title: "",
+        descrition: "",
+        dueDate:"",
     });
 
-    const handleOnChange = (e) =>{
-        setCardForm((prev)=>({...prev, [e.target.name]:e.target.value}))
+    const handleOnChange = (e) => {
+        setCardForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
 
@@ -20,14 +21,14 @@ const CreateCardModal = ({ listId }) => {
     if (modal.modalType !== modalTypes.CREATE_CARD) return null;
     const handleCreateCard = () => {
         createCard({
-            data:cardForm,
+            data: cardForm,
             listId: modal.modalData.listId,
         })
 
 
         setCardForm({
-            title:"",
-            descrition:"",
+            title: "",
+            descrition: "",
         })
 
 
@@ -41,6 +42,10 @@ const CreateCardModal = ({ listId }) => {
                 <div>
                     <label className="block mb-1 text-sm">Card Title</label>
                     <input value={cardForm.title} name="title" onChange={handleOnChange} className="bg-slate-700 outline-none p-3 rounded-lg w-full" type="text" placeholder="Card Title" />
+                </div>
+                <div>
+                    <label className="block mb-1 text-sm">Due Date</label>
+                    <input value={cardForm.dueDate} name="dueDate" onChange={handleOnChange} className="bg-slate-700 outline-none p-3 rounded-lg w-full" type="date" placeholder="Due Date" />
                 </div>
                 <div>
                     <label className="block mb-1 text-sm">Card Title</label>

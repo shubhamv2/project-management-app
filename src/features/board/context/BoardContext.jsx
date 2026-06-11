@@ -63,7 +63,7 @@ export const BoardProvider = ({ children }) => {
             memberIds:[],
             activities:[],
             comments:[],
-            dueDate: new Date().toISOString(),
+            dueDate: data.dueDate,
 
         }
         dispatch({
