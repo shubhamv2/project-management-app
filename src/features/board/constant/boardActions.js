@@ -5,4 +5,5 @@ export const boardActions = {
     MOVE_CARD:"MOVE_CARD",
     ADD_CHECK_LIST:"ADD_CHECK_LIST",
     TOGGLE_CHECK_LIST:"TOGGLE_CHECK_LIST",
+    DELETE_CARD:"DELETE_CARD",
 }

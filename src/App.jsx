@@ -4,6 +4,7 @@ import CardDetailsModal from "./features/cards/components/CardDetailsModal";
 import CreateBoardModal from "./features/board/components/CreateBoardModal";
 import CreateListModal from './features/lists/components/CreateListModal';
 import CreateCardModal from "./features/cards/components/CreateCardModal";
+import ConfimDeleteModal from "./features/cards/components/ConfirmDeleteModal";
 
 const App = () =>{
   return(
@@ -13,6 +14,7 @@ const App = () =>{
       <CreateBoardModal/>
       <CreateListModal/>
       <CreateCardModal/>
+      <ConfimDeleteModal/>
       <Toaster position="top-right" reverseOrder={false} />
     </>
   )

@@ -1,5 +1,10 @@
 import { Plus, User, Tag, Calendar, Trash } from "lucide-react";
-const SidebarActions = ({setShowCheckListInput}) => {
+import useModal from "../../modal/hooks/useModal";
+import { modalTypes } from "../../modal/data/modalTypes";
+const SidebarActions = ({setShowCheckListInput,cardId}) => {
+
+    const {openModal} = useModal();
+
     return (
         <div className="bg-slate-700 p-4 rounded-lg  ">
             <button onClick={() => setShowCheckListInput(true)} className="flex gap-2 items-center text-sm w-full hover:bg-slate-600 p-2 rounded-lg">
@@ -19,7 +24,7 @@ const SidebarActions = ({setShowCheckListInput}) => {
                 <Calendar size={20} />
                 <span >Due Date</span>
             </button>
-            <button className="text-red-500 flex gap-2 items-center text-sm w-full p-2 rounded-lg hover:bg-slate-600">
+            <button onClick={()=>openModal(modalTypes.CARD_DELETE,cardId)} className="text-red-500 flex gap-2 items-center text-sm w-full p-2 rounded-lg hover:bg-slate-600">
                 <Trash  size={20}/>
                 <span>Delete</span>
             </button>

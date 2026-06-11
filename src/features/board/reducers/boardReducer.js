@@ -82,6 +82,23 @@ export const boardReducer = (state, action) =>{
                     }
                 }
             }
+        case boardActions.DELETE_CARD:{
+            const currentListId = Object.keys(state.lists).find(listId=>state.lists[listId].cardIds.includes(action.payload));
+            if(!currentListId) return state;
+            const updatedCards = {...state.cards};
+            delete updatedCards[action.payload];
+            return{
+                ...state,
+                lists:{
+                    ...state.lists,
+                    [currentListId]:{
+                        ...state.lists[currentListId],
+                        cardIds:state.lists[currentListId].cardIds.filter(cardId=>cardId !== action.payload),
+                    }
+                },
+                cards: updatedCards,
+            }
+        }
         default:
             return state;
     }

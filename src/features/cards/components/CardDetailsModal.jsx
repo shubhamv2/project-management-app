@@ -25,6 +25,8 @@ const CardDetailsModal = () => {
     const card = state.cards[modal.modalData.cardId];
     if (!card) return null;
 
+    
+    
     const handelAddChecklist = () => {
         if (!label) return;
         addCheckList(card.id, label);
@@ -63,7 +65,7 @@ const CardDetailsModal = () => {
                     hll
                 </div>
 
-                <SidebarActions setShowCheckListInput={setShowCheckListInput}/>
+                <SidebarActions cardId={card.id} setShowCheckListInput={setShowCheckListInput}/>
             </div>
 
         </Modal>

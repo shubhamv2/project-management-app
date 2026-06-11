@@ -109,13 +109,22 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
+    const deleteCard = (cardId) =>{
+        dispatch({
+            type:boardActions.DELETE_CARD,
+            payload:cardId,
+        })
+    }
 
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
     return (
 
-        <BoardContext.Provider value={{ state, createBoard,createList, createCard, moveCard, addCheckList, toggleCheckList }}>
+        <BoardContext.Provider value={{ state, createBoard,
+        createList, createCard, 
+        moveCard, addCheckList, 
+        toggleCheckList, deleteCard }}>
             {children}
         </BoardContext.Provider>
     )
