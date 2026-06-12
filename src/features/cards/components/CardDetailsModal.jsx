@@ -43,7 +43,7 @@ const CardDetailsModal = ({ modal }) => {
                 <div className="">
                     <h3 className="mb-5 text-2xl font-bold">{card.title}</h3>
                     <div className="space-y-3">
-                        <CardLabels />
+                        <CardLabels cardId={card.id} />
                         <div>
                             <SubHeader title="Description" />
                             <p className="text-sm text-slate-300">{card.description}</p>
