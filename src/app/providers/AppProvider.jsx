@@ -1,11 +1,14 @@
 import { AuthProvider } from "../../features/auth/context/AuthContext";
 import { BoardProvider } from "../../features/board/context/BoardContext";
-const AppProvider = ({children}) =>{
-    return(
+import { ModalProvider } from "../../features/modal/context/ModalContext";
+const AppProvider = ({ children }) => {
+    return (
         <AuthProvider>
-            <BoardProvider>
-                {children}
-            </BoardProvider>
+            <ModalProvider>
+                <BoardProvider>
+                    {children}
+                </BoardProvider>
+            </ModalProvider>
         </AuthProvider>
     )
 }

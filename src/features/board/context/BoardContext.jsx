@@ -8,9 +8,10 @@ import { mockCard } from "../../cards/data/mockCard";
 export const BoardContext = createContext();
 
 const initialState = {
-    boards: mockBoards,
-    lists: mockList,
-    cards: mockCard,
+    boards: [],
+    lists: {},
+    cards: {},
+    labels:[],
 }
 export const BoardProvider = ({ children }) => {
     const [pmData, setPmData] = useState(() => {
@@ -51,16 +52,19 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
-    const createCard = ({listId, title}) =>{
+    const createCard = ({listId, data}) =>{
         const newCard = {
             id:crypto.randomUUID(),
-            title,
+            title:data.title,
             createdAt: new Date().toISOString(),
             createdBy: user.id,
+            description:data.description,
             labels:[],
             checkLists:[],
-            memberIds:[],
+            members:[],
             activities:[],
+            comments:[],
+            dueDate: data.dueDate,
 
         }
         dispatch({
@@ -79,12 +83,122 @@ export const BoardProvider = ({ children }) => {
     }
 
 
+
+    const addCheckList = (cardId,label="") =>{
+        const newCheckList = {
+            id:crypto.randomUUID(),
+            label,
+            isCompleted:false,
+            addedBy: user.name,
+        }
+        dispatch({
+            type:boardActions.ADD_CHECK_LIST,
+            payload:{
+                cardId,
+                newCheckList,
+            },
+        })
+    }
+
+    const toggleCheckList = (cardId, checkListId) =>{
+        dispatch({
+            type:boardActions.TOGGLE_CHECK_LIST,
+            payload:{
+                cardId,
+                checkListId,
+            },
+        })
+    }
+
+    const deleteCard = (cardId) =>{
+        dispatch({
+            type:boardActions.DELETE_CARD,
+            payload:cardId,
+        })
+    }
+
+
+    const addComment = (comment,cardId) =>{
+        const newComment = {
+            id:crypto.randomUUID(),
+            title:comment,
+            user:user.name,
+            createdAt: new Date().toISOString(),
+        }
+        dispatch({
+            type:boardActions.ADD_COMMENT,
+            payload:{
+                cardId,
+                newComment,
+            },
+        })
+    }
+
+
+    const addMember = (cardId, members) =>{
+        dispatch({
+            type:boardActions.ADD_MEMBER,
+            payload:{
+                cardId,
+                members,
+            }
+        })
+    }
+
+    const dueDateChange = (cardId, date) =>{
+        dispatch({
+            type:boardActions.CHANGE_DUE_DATE,
+            payload:{
+                cardId,
+                date,
+            }
+        })
+    }
+
+    const removeMember = (cardId, memberId) =>{
+        dispatch({
+            type:boardActions.REMOVE_MEMBER,
+            payload:{
+                cardId,
+                memberId,
+            }
+        })
+    }
+
+    const addLabel = (label) =>{
+        dispatch({
+            type:boardActions.ADD_LABEL,
+            payload:{
+                id:crypto.randomUUID(),
+                title:label.title,
+                color:label.selectedColor.twClass,
+            }
+
+        })
+    }
+
+
+    const applyLabel = (cardId,labels) =>{
+        
+        dispatch({
+            type:boardActions.APPLY_LABEL,
+            payload:{
+                cardId,
+                labels,
+            }
+        })
+    }
+
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
     return (
 
-        <BoardContext.Provider value={{ state, createBoard,createList, createCard, moveCard }}>
+        <BoardContext.Provider value={{ state, createBoard,
+        createList, createCard, 
+        moveCard, addCheckList, 
+        toggleCheckList, deleteCard, addComment, addMember, dueDateChange, removeMember
+        ,addLabel,applyLabel }}>
             {children}
         </BoardContext.Provider>
     )
