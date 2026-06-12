@@ -7,6 +7,8 @@ import useModal from "../hooks/useModal";
 import { modalTypes } from "../data/modalTypes";
 import AddMemberModal from "../../cards/components/member/AddMemberModal";
 import DuedataModal from "../../cards/components/duedate/DuedateModal";
+import AssigneesModal from "../../cards/components/assignee/AssigneesModal";
+import AddLabelsModal from "../../cards/components/labels/AddLabelsModal";
 
 const RootModal = () =>{
     const {modals} = useModal();
@@ -29,6 +31,10 @@ const RootModal = () =>{
                             return <AddMemberModal key={modal.id} modal={modal}/>
                         case modalTypes.CHANGE_DUE_DATE:
                             return <DuedataModal key={modal.id} modal={modal}/>
+                        case modalTypes.MANAGE_MEMBERS:
+                            return <AssigneesModal key={modal.id} modal={modal}/>
+                        case modalTypes.ADD_LABEL:
+                            return <AddLabelsModal key={modal.id} modal={modal}/>
                         default:
                             return null;
                     }

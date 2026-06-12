@@ -11,6 +11,7 @@ const initialState = {
     boards: [],
     lists: {},
     cards: {},
+    labels:[],
 }
 export const BoardProvider = ({ children }) => {
     const [pmData, setPmData] = useState(() => {
@@ -154,6 +155,40 @@ export const BoardProvider = ({ children }) => {
         })
     }
 
+    const removeMember = (cardId, memberId) =>{
+        dispatch({
+            type:boardActions.REMOVE_MEMBER,
+            payload:{
+                cardId,
+                memberId,
+            }
+        })
+    }
+
+    const addLabel = (label) =>{
+        dispatch({
+            type:boardActions.ADD_LABEL,
+            payload:{
+                id:crypto.randomUUID(),
+                title:label.title,
+                color:label.selectedColor.twClass,
+            }
+
+        })
+    }
+
+
+    const applyLabel = (cardId,labels) =>{
+        
+        dispatch({
+            type:boardActions.APPLY_LABEL,
+            payload:{
+                cardId,
+                labels,
+            }
+        })
+    }
+
     useEffect(()=>{
         localStorage.setItem('pmData',JSON.stringify(state))
     },[state]);
@@ -162,7 +197,8 @@ export const BoardProvider = ({ children }) => {
         <BoardContext.Provider value={{ state, createBoard,
         createList, createCard, 
         moveCard, addCheckList, 
-        toggleCheckList, deleteCard, addComment, addMember, dueDateChange }}>
+        toggleCheckList, deleteCard, addComment, addMember, dueDateChange, removeMember
+        ,addLabel,applyLabel }}>
             {children}
         </BoardContext.Provider>
     )

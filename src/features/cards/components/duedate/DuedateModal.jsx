@@ -5,9 +5,12 @@ import Button from "../../../../components/Button";
 import { useState } from "react";
 import useBoard from "../../../board/hooks/useBoard";
 const DuedataModal = ({modal}) => {
+    const {state} = useBoard();
+    const dueDate = state.cards[modal.modalData].dueDate;
     const { closeModal } = useModal();
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(dueDate);
     const {dueDateChange} = useBoard();
+
     return (
         <Modal isOpen={true} onClose={closeModal} title="Set Deadline">
             <div className="space-y-6">

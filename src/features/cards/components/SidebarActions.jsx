@@ -11,12 +11,12 @@ const SidebarActions = ({setShowCheckListInput,cardId}) => {
                 <Plus />
                 <span size={20}>Add to list</span>
             </button>
-            <button className="flex gap-2 items-center text-sm w-full p-2 rounded-lg hover:bg-slate-600">
+            <button onClick={()=>openModal(modalTypes.MANAGE_MEMBERS, cardId)} className="flex gap-2 items-center text-sm w-full p-2 rounded-lg hover:bg-slate-600">
                 <User />
-                <span size={20}>Assign</span>
+                <span size={20}>Assignees</span>
             </button>
 
-            <button className="flex gap-2 items-center text-sm w-full p-2 rounded-lg hover:bg-slate-600">
+            <button onClick={()=>openModal(modalTypes.ADD_LABEL, cardId)} className="flex gap-2 items-center text-sm w-full p-2 rounded-lg hover:bg-slate-600">
                 <Tag size={20} />
                 <span >Labels</span>
             </button>

@@ -148,6 +148,39 @@ export const boardReducer = (state, action) => {
             }
         }
 
+        case boardActions.REMOVE_MEMBER:{
+            const {cardId, memberId} = action.payload;
+            return{
+                ...state,
+                cards:{
+                    ...state.cards,
+                    [cardId]:{
+                        ...state.cards[cardId],
+                        members:state.cards[cardId].members.filter(member=>member.id !== memberId),
+                    }
+                }
+            }
+        }
+
+        case boardActions.ADD_LABEL:
+            return {
+                ...state,
+                labels:[...state.labels,action.payload],
+            }
+
+        case boardActions.APPLY_LABEL:{
+            const {cardId, labels} = action.payload;
+            return {
+                ...state,
+                cards:{
+                    ...state.cards,
+                    [cardId]:{
+                        ...state.cards[cardId],
+                        labels:labels,
+                    }
+                }
+            }
+        }
 
         default:
             return state;
